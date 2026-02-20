@@ -18,6 +18,6 @@ class Dano {
     }
 
     public function desc():string{
-        return "Dano Tipo:$this->tipo, Valor:$this->valor \n";
+        return "Dano Tipo: $this->tipo, Valor: $this->valor \n";
     }
 }
