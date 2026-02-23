@@ -9,6 +9,10 @@
             $this->danoBase = $danoBase;
         }
 
+        public function getTipo():string{
+            return $this->tipo;
+        }
+
         public function desc():string{
             return "Arma Tipo:$this->tipo, Dano:$this->danoBase \n";
         }

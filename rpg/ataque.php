@@ -11,7 +11,13 @@
 
         public function executar():Dano{
             $dano = (int)$this->arma->danoBase + $this->atacante->getNivel();
-            return new Dano("Magia", $dano);
+            $tipo = strtolower($this->arma->getTipo());
+            $tipoMagia = "Desconhecido";
+            if($tipo == "espada")$tipoMagia = "Físico";
+            if($tipo == "cajado")$tipoMagia = "Magia";
+            if($tipo == "arco")$tipoMagia = "Físico";
+            
+            return new Dano($tipoMagia, $dano);
         }
 
         public function relatorio(Dano $dano):string{

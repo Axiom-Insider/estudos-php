@@ -11,7 +11,7 @@
             if($nome != null)$this->nome = $nome;
             if($nivel != null)$this->nivel = $nivel;
             if($hp != null)$this->hp = $hp;
-            if($arma != null)$this->arma = new Arma("espada", 20);
+            $this->arma = $arma ?? new Arma("Espada", 20);
         }
 
 
@@ -29,6 +29,9 @@
 
         public function receberDano(Dano $dano):void{
             $this->hp -= $dano->getDano();
+            if($this->hp < 0){
+                $this->hp = 0;
+            }
             return;
             }
 
