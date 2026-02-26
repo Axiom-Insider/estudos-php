@@ -4,11 +4,9 @@
 
     class ItemCarrinho{
 
-        private float  $quantidade;
-
         public function __construct(
             private Produto $produto,
-            ? float $quantidade = 1
+            private int $quantidade,
         )
         {
             $this->produto = $produto;
@@ -19,17 +17,16 @@
             return $this->produto;
         }
 
-        public function getQnt():float{
+        public function getQnt():int{
             return $this->quantidade;
         }
 
-        public function aumentarQnt(float $n):void{
+        public function aumentarQnt(int $n):void{
             $this->quantidade += $n;
             return;
         }
 
-        public function diminuirQnt(float $n):void{
-            if($this->quantidade - $n <= 0)return;
+        public function diminuirQnt(int $n):void{
             $this->quantidade -= $n;
             return;
         }

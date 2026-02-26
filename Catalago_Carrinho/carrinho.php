@@ -9,7 +9,7 @@
         public function __construct(){}
 
 
-        public function adicionarQnt(int $id, float $qnt):void{
+        public function adicionarQnt(int $id, int $qnt):void{
             foreach($this->itens as $item){
                 if($item->getProduto()->getId() === $id){
                     $item->aumentarQnt($qnt);
@@ -18,25 +18,32 @@
             }
         }
 
-        public function diminuirQnt(int $id, float $qnt):void{
+        public function diminuirQnt(int $id, int $qnt):void{
             foreach($this->itens as $item){
                 if($item->getProduto()->getId() === $id){
                     $item->diminuirQnt($qnt);
+                    if($item->getQnt() <= 0){
+                        $this->remove($item->getProduto()->getId());
+                    }
                     return;
                 }
             }
         }
 
         public function add(Produto $produto, float $qnt):void{
+            foreach ($this->itens as $item) {
+                if($produto->getId() === $item->getProduto()->getId()){  
+                    $item->aumentarQnt($qnt); 
+                    return;
+                }
+            }
             $this->itens[] = new ItemCarrinho($produto, $qnt);
             return;
         }
 
         public function remove(int $id):void{
             foreach($this->itens as $key =>  $item){
-                if($item->getProduto()->getId() === $id){
-                    unset($this->itens[$key]);
-                }
+                if($item->getProduto()->getId() === $id)unset($this->itens[$key]);
             }
         }
 
